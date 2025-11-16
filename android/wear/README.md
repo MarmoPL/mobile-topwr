@@ -6,6 +6,11 @@ A native WearOS companion app for ToPWR that displays real-time parking availabi
 
 - **Real-time Parking Data**: Fetches live parking availability from the ToPWR API
 - **Native WearOS UI**: Built with Jetpack Compose for Wear OS
+- **Material 3 Expressive Tiles**: Quick-access tiles with beautiful, dynamic design
+  - Shows top 3 parkings with most available spaces
+  - Color-coded cards (green/orange/red) based on availability
+  - Bold, expressive typography
+  - Tap to open full app
 - **Standalone App**: Works independently without requiring the phone app
 
 ## Setup Instructions
@@ -63,22 +68,56 @@ adb install android/wear/build/outputs/apk/debug/wear-debug.apk
 3. Connect via `adb connect <watch-ip>:5555`
 4. Install the APK
 
+## Using Tiles
+
+### Adding the Parking Tile to Your Watch
+
+1. **Open the Tile Carousel**: On your WearOS watch, swipe left/right from the watch face
+2. **Add a New Tile**: Scroll to the end and tap the "+" button
+3. **Select ToPWR Parkings**: Find and tap "Parkings" in the list
+4. **View Live Data**: The tile will now show real-time parking availability
+
+### Tile Features
+
+- **Top 3 Parkings**: Shows the 3 parkings with the most available spaces
+- **Color-Coded Cards**:
+  - 🟢 **Green**: Plenty of spaces (>50% available)
+  - 🟠 **Orange**: Some spaces (20-50% available)
+  - 🔴 **Red**: Limited spaces (<20% available)
+  - ⚫ **Grey**: No spaces available
+- **Expressive Design**: Bold numbers, modern typography, smooth rounded corners
+- **Tap to Open**: Tap anywhere on the tile to open the full app
+- **Auto-Refresh**: Updates automatically when you view the tile
+
+### Material 3 Expressive Design
+
+The tile uses Material 3's expressive design language with:
+- **Dynamic colors** that adapt to parking availability
+- **Bold typography** (up to 900 weight) for emphasis
+- **Large numbers** (28dp) for at-a-glance readability
+- **Smooth corners** (20-28dp radius) for a modern look
+- **Proper spacing** and visual hierarchy
+
 ## Project Structure
 
 ```
 android/wear/
 ├── src/main/
 │   ├── java/com/solvro/topwr/wear/
-│   │   ├── MainActivity.kt           # Main Compose UI
+│   │   ├── MainActivity.kt                # Main Compose UI
 │   │   ├── api/
-│   │   │   └── ParkingApiService.kt  # API client
-│   │   └── model/
-│   │       └── Parking.kt            # Data models
+│   │   │   └── ParkingApiService.kt       # API client
+│   │   ├── model/
+│   │   │   └── Parking.kt                 # Data models
+│   │   └── tile/
+│   │       ├── ParkingTileService.kt      # Tile service
+│   │       ├── ParkingTileRenderer.kt     # Material 3 tile UI
+│   │       └── ParkingTileState.kt        # Tile state management
 │   ├── res/
 │   │   └── values/
-│   │       └── strings.xml           # String resources
+│   │       └── strings.xml                # String resources
 │   └── AndroidManifest.xml
-├── build.gradle                       # Module build configuration
+├── build.gradle                            # Module build configuration
 ├── proguard-rules.pro
 └── README.md
 ```
@@ -86,6 +125,8 @@ android/wear/
 ## Dependencies
 
 - **Jetpack Compose for Wear OS**: Modern UI toolkit
+- **Wear Tiles with Material 3**: Quick-access tiles with expressive design
+- **Horologist**: Google's library for WearOS best practices
 - **OkHttp**: HTTP client for API calls
 - **Kotlinx Serialization**: JSON parsing
 - **Coroutines**: Async operations
@@ -137,16 +178,16 @@ The app connects to the same parking API used by the main Flutter app:
 
 ### Future Enhancements
 
-This is a minimal base implementation. You can extend it with:
+You can extend this implementation with:
 
 1. **Favorites**: Save favorite parking spots
 2. **Notifications**: Alert when spaces become available
 3. **Map Integration**: Show parking locations on a map
-4. **Complications**: Add watch face complications
-5. **Tiles**: Quick access tiles for parking data
-6. **Data Sync**: Share data between phone and watch
-7. **Offline Support**: Cache parking data locally
-8. **More API Endpoints**: Add news, calendar, or other features
+4. **Complications**: Add watch face complications showing parking data
+5. **Data Sync**: Share data between phone and watch via Data Layer API
+6. **Offline Support**: Cache parking data locally with Room database
+7. **More API Endpoints**: Add news, calendar, or other features from the main app
+8. **Advanced Tiles**: Add multiple tile layouts or customization options
 
 ### Adding New Features
 

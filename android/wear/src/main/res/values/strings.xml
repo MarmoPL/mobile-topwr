@@ -7,4 +7,8 @@
     <string name="retry">Retry</string>
     <string name="available_spaces">Available: %s</string>
     <string name="total_spaces">Total: %s</string>
+
+    <!-- Tile -->
+    <string name="tile_name">Parkings</string>
+    <string name="tile_description">View live parking availability at a glance</string>
 </resources>

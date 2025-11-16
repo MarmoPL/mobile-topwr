@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToPWR</string>
+    <string name="parkings_title">Parkings</string>
+    <string name="loading">Loading…</string>
+    <string name="error">Error loading data</string>
+    <string name="retry">Retry</string>
+    <string name="available_spaces">Available: %s</string>
+    <string name="total_spaces">Total: %s</string>
+</resources>
